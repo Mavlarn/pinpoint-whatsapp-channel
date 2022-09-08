@@ -1,15 +1,34 @@
-# Welcome to your CDK TypeScript project
+# Pinpoint Whatsapp channel
 
-You should explore the contents of this project. It demonstrates a CDK app with an instance of a stack (`PinpointWhatsappChannelStack`)
-which contains an Amazon SQS queue that is subscribed to an Amazon SNS topic.
+This is a pinpoint custom channel to deliver message with whatsapp API.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+## Configure WhatsApp API webhook
 
-## Useful commands
+TBD.
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template
+## create parameters in secretsmanager
+Open AWS console, go to secretsmanager, create a secret of "Other type of secret"t, with "Key/value" :
+key is `FB_APP_SECRET`, value is the app token of whatsapp. 
+
+and remember the ARN of the secret, like `arn:aws:secretsmanager:us-east-1:111222333:secret:thesecretname`
+
+## Deploy lambda
+
+Clone the code, and open the file: `lib/pinpoint-whatsapp-channel-stack.ts`, and modify the code:
+```typescript
+    const fbSecretArn = "arn:aws:secretsmanager:us-east-1:xxx:secret:xxxxx"
+```
+Replace the ARN of your esecret just created.
+
+and in line 24:
+```
+    FB_BUSINESS_PHONE_ID: "xxxxxxx",
+```
+Update the phone id (it is phone id in whatsapp, not the phone number.)
+
+Then deploy with:
+```
+cdk deploy
+```
+
+Then you can get the ARN of the created lambda function. Which can be used as deliver ARN in custom channel.

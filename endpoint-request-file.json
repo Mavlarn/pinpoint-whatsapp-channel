@@ -1,0 +1,28 @@
+{
+    "ChannelType": "CUSTOM",
+    "Address": "8615210957617",
+    "Metrics": {
+      "technology_interest_level": 9.0,
+      "music_interest_level": 6.0,
+      "travel_interest_level": 4.0,
+      "age": 39
+    },
+    "Location": {
+      "Country": "US",
+      "City": "Seattle",
+      "PostalCode": "98121",
+      "Latitude": 47.61,
+      "Longitude": -122.33
+    },
+    "User": {
+        "UserAttributes": {
+            "FirstName": [
+                "Mav"
+            ],
+            "interests": [
+                "Technology"
+            ]
+        },
+        "UserId": "mav_444"
+    }
+  }
